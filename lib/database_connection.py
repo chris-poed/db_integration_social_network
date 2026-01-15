@@ -10,6 +10,9 @@ import os
 class DatabaseConnection:
     DATABASE_NAME = "DEFAULT_MAKERS_PROJECT" # <-- CHANGE THIS!
 
+    def __init__(self):
+        self.connection = None
+
     # This method connects to PostgreSQL using the psycopg library. We connect
     # to localhost and select the database name given in argument.
     def connect(self):
