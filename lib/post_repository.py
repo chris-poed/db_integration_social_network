@@ -19,3 +19,7 @@ class PostRepository():
             item = Post(row['id'], row['title'], row['content'], row['views'], row['user_id'])
             posts.append(item)
         return posts
+    
+    def create(self, post):
+        self._connection.execute('INSERT INTO posts (title, content, views, user_id) VALUES (%s, %s, %s, %s)', [post.title, post.content, post.views, post.user_id])
+        return None
