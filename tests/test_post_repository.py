@@ -38,13 +38,13 @@ def test_get_all_posts(db_connection, test_posts):
     posts = repository.all()
     assert posts == test_posts
 
-@mark.it('Find all posts for user 1')
+@mark.it('Find all posts for a given user')
 def test_find_posts_for_user(db_connection, test_user_1_posts):
     repository = PostRepository(db_connection)
     posts = repository.find(1)
     assert posts == test_user_1_posts
 
-@mark.it('Create a new post for user 3')
+@mark.it('Create a new post for a given user')
 def test_create_post_for_user(db_connection, test_user_3_new_post):
     repository = PostRepository(db_connection)
     repository.create(Post(None, 'the title', 'this is some content', 7, 3))
