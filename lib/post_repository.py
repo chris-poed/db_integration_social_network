@@ -23,3 +23,11 @@ class PostRepository():
     def create(self, post):
         self._connection.execute('INSERT INTO posts (title, content, views, user_id) VALUES (%s, %s, %s, %s)', [post.title, post.content, post.views, post.user_id])
         return None
+
+    def find_with_username(self, username):
+        rows = self._connection.execute('SELECT posts.id, posts.title, posts.content, posts.views, posts.user_id FROM posts JOIN users ON posts.user_id = users.id WHERE users.username = %s', [username])
+        posts = []
+        for row in rows:
+            item = Post(row['id'], row['title'], row['content'], row['views'], row['user_id'])
+            posts.append(item)
+        return posts
